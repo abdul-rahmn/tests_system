@@ -77,14 +77,6 @@ class ManageQuestionsCourse extends StatelessWidget {
                     // DataColumn(label: Text("true Answer",style: TextStyle(fontWeight: FontWeight.bold),)),
                     DataColumn(
                         label: Text(
-                      "course Id",
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Color.fromARGB(255, 62, 255, 245),
-                      ),
-                    )),
-                    DataColumn(
-                        label: Text(
                       "show/upd/del",
                       style: TextStyle(
                         fontSize: 18,
@@ -106,11 +98,6 @@ class ManageQuestionsCourse extends StatelessWidget {
                         // DataCell(Text("${q.answer3}")),
                         // DataCell(Text("${q.answer4}")),
                         // DataCell(Text("${q.trueAnswer}")),
-                        DataCell(Text("${q.courseId}",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                            ))),
                         DataCell(Row(
                           children: [
                             IconButton(
