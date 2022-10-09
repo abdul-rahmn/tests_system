@@ -56,9 +56,7 @@ class StudentCourses extends StatelessWidget {
                   SizedBox(width: 15),
                   Text(
                     "${i.courseName}",
-                    style: TextStyle(
-                        fontSize: 25,
-                        color: Colors.white),
+                    style: TextStyle(fontSize: 25, color: Colors.white),
                   )
                 ],
               ),
@@ -91,16 +89,21 @@ class StudentCourses extends StatelessWidget {
     return Scaffold(
       drawer: Drawer(
         backgroundColor: Color.fromARGB(255, 33, 47, 49),
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
+        child: Padding(
+          padding: const EdgeInsets.all(2.0),
+          child: SingleChildScrollView(
             child: Column(
               children: [
                 DrawerHeader(
-                    child: Container(                      
-                  height: 50,
-                  child: Text(
-                    "${Provider.of<SMProvider>(context).fullName}",
-                    style: TextStyle(color: Colors.yellow, fontSize: 25),
+                    child: CircleAvatar(
+                  backgroundColor: Color.fromARGB(255, 80, 100, 95),
+                  radius: 300,
+                  child: Container(
+                    height: 50,
+                    child: Text(
+                      "${Provider.of<SMProvider>(context).fullName[0].toUpperCase()}${Provider.of<SMProvider>(context).fullName[1]}",
+                      style: TextStyle(color: Colors.yellow, fontSize: 52),
+                    ),
                   ),
                 )),
                 DrawerHeader(
@@ -110,45 +113,45 @@ class StudentCourses extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Icon(Icons.present_to_all_rounded),
+                            Icon(Icons.settings,
+                                color: Colors.white),
                             SizedBox(width: 20),
-                            Text("Primary",
-                        style: TextStyle(color: Colors.white)),
-                            SizedBox(width: 60),
-                            Container(
-                              padding: const EdgeInsets.all(2.0),
-                              decoration: BoxDecoration(
-                                color: Colors.blue,
-                                //border: Border.all(width: 5, color: Colors.red),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50)),
-                              ),
-                              child: const Text(
-                                "5 new",
-                                style: TextStyle(
-                                    fontSize: 15.0, color: Colors.white),
-                              ),
-                            )
+                            Text("Settings",
+                                style: TextStyle(color: Colors.white)),
+                            // SizedBox(width: 60),
+                            // Container(
+                            //   padding: const EdgeInsets.all(2.0),
+                            //   decoration: BoxDecoration(
+                            //     color: Colors.blue,
+                            //     //border: Border.all(width: 5, color: Colors.red),
+                            //     borderRadius:
+                            //         BorderRadius.all(Radius.circular(50)),
+                            //   ),
+                            //   child: const Text(
+                            //     "5 new",
+                            //     style: TextStyle(
+                            //         fontSize: 15.0, color: Colors.white),
+                            //   ),
+                            // )
                           ],
                         ),
                         SizedBox(height: 30),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Icon(Icons.social_distance),
+                            Icon(Icons.message_outlined, color: Colors.white),
                             SizedBox(width: 20),
-                            Text("social",
-                        style: TextStyle(color: Colors.white))
+                            Text("Message us", style: TextStyle(color: Colors.white))
                           ],
                         ),
                         SizedBox(height: 30),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Icon(Icons.poll_rounded),
+                            Icon(Icons.app_shortcut_outlined, color: Colors.white),
                             SizedBox(width: 20),
-                            Text("promotions",
-                        style: TextStyle(color: Colors.white))
+                            Text("Apps",
+                                style: TextStyle(color: Colors.white))
                           ],
                         )
                       ],
@@ -162,48 +165,28 @@ class StudentCourses extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Icon(Icons.star),
+                          Icon(Icons.help_outline_outlined, color: Colors.white),
                           SizedBox(width: 20),
-                          Text("starred",
-                        style: TextStyle(color: Colors.white))
+                          Text("help",
+                              style: TextStyle(color: Colors.white))
                         ],
                       ),
                       SizedBox(height: 30),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Icon(Icons.present_to_all_rounded),
+                          Icon(Icons.error_outline, color: Colors.white),
                           SizedBox(width: 20),
-                          Text("snoozed",
-                        style: TextStyle(color: Colors.white)),
-                          SizedBox(width: 60),
-                          Text("15",
-                        style: TextStyle(color: Colors.white)),
+                          Text("About us", style: TextStyle(color: Colors.white))
                         ],
                       ),
-                      SizedBox(height: 30),
+                      SizedBox(height: 150),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Icon(Icons.import_contacts),
-                          SizedBox(width: 20),
-                          Text("important",
-                        style: TextStyle(color: Colors.white)),
-                          SizedBox(width: 55),
-                          Text("+99",
-                        style: TextStyle(color: Colors.white))
+                          Text("V  0.0.1", style: TextStyle(color: Colors.white))
                         ],
                       ),
-                      SizedBox(height: 30),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(Icons.send),
-                          SizedBox(width: 20),
-                          Text("sent",
-                        style: TextStyle(color: Colors.white))
-                        ],
-                      )
                     ],
                   ),
                 ),
@@ -211,6 +194,7 @@ class StudentCourses extends StatelessWidget {
             ),
           ),
         ),
+      ),
       appBar: AppBar(
         actions: [
           Column(

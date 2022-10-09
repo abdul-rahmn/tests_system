@@ -26,6 +26,8 @@ class LogInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    un.text="samer1";
+    pw.text="samer123";
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 33, 47, 49),
       // appBar: AppBar(
