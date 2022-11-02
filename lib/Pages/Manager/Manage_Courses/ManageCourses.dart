@@ -136,293 +136,290 @@ class ManageCourses extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.only(top: 20),
           width: double.infinity,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 5),
-                  Text(
-                      "Number Of Courses: ${Provider.of<SMProvider>(context).lstCourses.length}",
+          child: Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 5),
+                Text(
+                    "Number Of Courses: ${Provider.of<SMProvider>(context).lstCourses.length}",
+                    style: TextStyle(
+                        color: Colors.white,
+                        //backgroundColor: Color.fromARGB(255, 233, 233, 233),
+                        fontSize: 20)),
+                SizedBox(height: 5),
+                DataTable(
+                  columns: [
+                    // DataColumn(
+                    //     label: Text(
+                    //   "id",
+                    //   style: TextStyle(
+                    //     fontSize: 18,
+                    //     color: Color.fromARGB(255, 62, 255, 245),
+                    //   ),
+                    // )),
+                    DataColumn(
+                        label: Text(
+                      "Course Name",
                       style: TextStyle(
-                          color: Colors.white,
-                          //backgroundColor: Color.fromARGB(255, 233, 233, 233),
-                          fontSize: 20)),
-                  SizedBox(height: 5),
-                  DataTable(
-                    columns: [
-                      DataColumn(
-                          label: Text(
-                        "id",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Color.fromARGB(255, 62, 255, 245),
-                        ),
-                      )),
-                      DataColumn(
-                          label: Text(
-                        "Course Name",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Color.fromARGB(255, 62, 255, 245),
-                        ),
-                      )),
-                      DataColumn(
-                          label: Text(
-                        "Questions",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Color.fromARGB(255, 62, 255, 245),
-                        ),
-                      )),
-                      DataColumn(
-                          label: Text(
-                        "upd/del",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Color.fromARGB(255, 62, 255, 245),
-                        ),
-                      )),
-                    ],
-                    rows: [
-                      ...Provider.of<SMProvider>(context).lstCourses.map((c) {
-                        return DataRow(cells: [
-                          DataCell(Text("${c.id}",
+                        fontSize: 18,
+                        color: Color.fromARGB(255, 62, 255, 245),
+                      ),
+                    )),
+                    DataColumn(
+                        label: Text(
+                      "Questions",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Color.fromARGB(255, 62, 255, 245),
+                      ),
+                    )),
+                    DataColumn(
+                        label: Text(
+                      "upd/del",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Color.fromARGB(255, 62, 255, 245),
+                      ),
+                    )),
+                  ],
+                  rows: [
+                    ...Provider.of<SMProvider>(context).lstCourses.map((c) {
+                      return DataRow(cells: [
+                        // DataCell(Text("${c.id}",
+                        //     style: TextStyle(
+                        //       fontSize: 16,
+                        //       color: Colors.white,
+                        //     ))),
+                        DataCell(Text("${c.courseName}",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                            ))),
+                        DataCell(
+                          ElevatedButton(
+                            onPressed: () {
+                              Provider.of<SMProvider>(context, listen: false)
+                                  .loadQuestions();
+                              Navigator.of(context)
+                                  .push(MaterialPageRoute(builder: (_) {
+                                return ManageQuestionsCourse(c.id);
+                              }));
+                            },
+                            // style: ElevatedButton.styleFrom(
+                            //   primary: Color.fromARGB(255, 56, 107, 104),
+                            //   padding: EdgeInsets.symmetric(
+                            //       horizontal: 50, vertical: 20),
+                            // ),
+                            child: Text(
+                              "Questions",
                               style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                              ))),
-                          DataCell(Text("${c.courseName}",
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                              ))),
-                          DataCell(
-                            ElevatedButton(
-                              onPressed: () {
-                                Provider.of<SMProvider>(context, listen: false)
-                                    .loadQuestions();
-                                Navigator.of(context)
-                                    .push(MaterialPageRoute(builder: (_) {
-                                  return ManageQuestionsCourse(c.id);
-                                }));
-                              },
-                              // style: ElevatedButton.styleFrom(
-                              //   primary: Color.fromARGB(255, 56, 107, 104),
-                              //   padding: EdgeInsets.symmetric(
-                              //       horizontal: 50, vertical: 20),
-                              // ),
-                              child: Text(
-                                "Questions",
-                                style: TextStyle(
-                                  //fontSize: 20,
-                                  color: Color.fromARGB(255, 255, 231, 19),
-                                  //fontWeight: FontWeight.bold
-                                ),
+                                //fontSize: 20,
+                                color: Color.fromARGB(255, 255, 231, 19),
+                                //fontWeight: FontWeight.bold
                               ),
                             ),
                           ),
-                          DataCell(Row(
-                            children: [
-                              IconButton(
-                                  onPressed: () {
-                                    cncu.text = c.courseName.toString();
-                                    showDialog(
-                                        context: context,
-                                        builder: (_) {
-                                          return AlertDialog(
-                                            backgroundColor:
-                                                Color.fromARGB(255, 44, 66, 65),
-                                            title: Text("Update Course",
-                                                style:
-                                                    TextStyle(color: Colors.white)),
-                                            actions: [
-                                              Container(
-                                                child: Form(
-                                                  key: formKey,
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.center,
-                                                    children: [
-                                                      TextFormField(
-                                                        controller: cncu,
-                                                        style: TextStyle(
-                                                            color: Colors.white),
-                                                        decoration: InputDecoration(
-                                                          labelText: "Course Name",
-                                                          labelStyle: TextStyle(
-                                                            color: Colors.yellow,
-                                                          ),
-                                                          prefixIcon: Icon(
-                                                              Icons.auto_stories),
-                                                          focusedBorder:
-                                                              OutlineInputBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(5),
-                                                            borderSide: BorderSide(
-                                                              color: Color.fromARGB(
-                                                                  255,
-                                                                  143,
-                                                                  231,
-                                                                  146),
-                                                              width: 1,
-                                                            ),
-                                                          ),
-                                                          enabledBorder:
-                                                              OutlineInputBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(5),
-                                                            borderSide: BorderSide(
-                                                              color: Colors.yellow,
-                                                              width: 1,
-                                                            ),
+                        ),
+                        DataCell(Row(
+                          children: [
+                            IconButton(
+                                onPressed: () {
+                                  cncu.text = c.courseName.toString();
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) {
+                                        return AlertDialog(
+                                          backgroundColor:
+                                              Color.fromARGB(255, 44, 66, 65),
+                                          title: Text("Update Course",
+                                              style:
+                                                  TextStyle(color: Colors.white)),
+                                          actions: [
+                                            Container(
+                                              child: Form(
+                                                key: formKey,
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    TextFormField(
+                                                      controller: cncu,
+                                                      style: TextStyle(
+                                                          color: Colors.white),
+                                                      decoration: InputDecoration(
+                                                        labelText: "Course Name",
+                                                        labelStyle: TextStyle(
+                                                          color: Colors.yellow,
+                                                        ),
+                                                        prefixIcon: Icon(
+                                                            Icons.auto_stories),
+                                                        focusedBorder:
+                                                            OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                          borderSide: BorderSide(
+                                                            color: Color.fromARGB(
+                                                                255,
+                                                                143,
+                                                                231,
+                                                                146),
+                                                            width: 1,
                                                           ),
                                                         ),
-                                                        validator: (value) {
-                                                          if (value!.isEmpty ||
-                                                              value == null) {
-                                                            return "Course Name required";
-                                                          }
-                                                        },
+                                                        enabledBorder:
+                                                            OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                          borderSide: BorderSide(
+                                                            color: Colors.yellow,
+                                                            width: 1,
+                                                          ),
+                                                        ),
                                                       ),
-                                                      SizedBox(height: 15),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          ElevatedButton(
-                                                              onPressed: () {
-                                                                if (formKey
-                                                                    .currentState!
-                                                                    .validate()) {
-                                                                  Course
-                                                                      .UpdateCourse(
-                                                                          c.id,
-                                                                          cncu.text);
-                                                                  Provider.of<SMProvider>(
-                                                                          context,
-                                                                          listen:
-                                                                              false)
-                                                                      .loadCourses();
-                                                                  showDialog(
-                                                                      context:
-                                                                          context,
-                                                                      builder: (_) {
-                                                                        return AlertDialog(
-                                                                          backgroundColor:
-                                                                              Color.fromARGB(
-                                                                                  255,
-                                                                                  33,
-                                                                                  47,
-                                                                                  49),
-                                                                          title: Text(
-                                                                              "update in progress...",
-                                                                              style:
-                                                                                  TextStyle(color: Colors.white)),
-                                                                          actions: [],
-                                                                        );
-                                                                      });
-                                                                  Future.delayed(
-                                                                      Duration(
-                                                                          seconds:
-                                                                              1),
-                                                                      () {
-                                                                    Navigator.of(
-                                                                            context)
-                                                                        .pop();
-                                                                  });
-                                                                  Provider.of<SMProvider>(
-                                                                          context,
-                                                                          listen:
-                                                                              false)
-                                                                      .loadCourses();
-                                                                  Future.delayed(
-                                                                      Duration(
-                                                                          seconds:
-                                                                              1),
-                                                                      () {
-                                                                    Navigator.of(
-                                                                            context)
-                                                                        .pop();
-                                                                  });
-                                                                }
-                                                              },
-                                                              child: Row(
-                                                                children: [
-                                                                  Icon(Icons.add),
-                                                                  Text("Update")
-                                                                ],
-                                                              )),
-                                                        ],
-                                                      )
-                                                    ],
-                                                  ),
+                                                      validator: (value) {
+                                                        if (value!.isEmpty ||
+                                                            value == null) {
+                                                          return "Course Name required";
+                                                        }
+                                                      },
+                                                    ),
+                                                    SizedBox(height: 15),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        ElevatedButton(
+                                                            onPressed: () {
+                                                              if (formKey
+                                                                  .currentState!
+                                                                  .validate()) {
+                                                                Course
+                                                                    .UpdateCourse(
+                                                                        c.id,
+                                                                        cncu.text);
+                                                                Provider.of<SMProvider>(
+                                                                        context,
+                                                                        listen:
+                                                                            false)
+                                                                    .loadCourses();
+                                                                showDialog(
+                                                                    context:
+                                                                        context,
+                                                                    builder: (_) {
+                                                                      return AlertDialog(
+                                                                        backgroundColor:
+                                                                            Color.fromARGB(
+                                                                                255,
+                                                                                33,
+                                                                                47,
+                                                                                49),
+                                                                        title: Text(
+                                                                            "update in progress...",
+                                                                            style:
+                                                                                TextStyle(color: Colors.white)),
+                                                                        actions: [],
+                                                                      );
+                                                                    });
+                                                                Future.delayed(
+                                                                    Duration(
+                                                                        seconds:
+                                                                            1),
+                                                                    () {
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop();
+                                                                });
+                                                                Provider.of<SMProvider>(
+                                                                        context,
+                                                                        listen:
+                                                                            false)
+                                                                    .loadCourses();
+                                                                Future.delayed(
+                                                                    Duration(
+                                                                        seconds:
+                                                                            1),
+                                                                    () {
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop();
+                                                                });
+                                                              }
+                                                            },
+                                                            child: Row(
+                                                              children: [
+                                                                Icon(Icons.add),
+                                                                Text("Update")
+                                                              ],
+                                                            )),
+                                                      ],
+                                                    )
+                                                  ],
                                                 ),
                                               ),
-                                            ],
-                                          );
-                                        });
-                                    // Navigator.of(context)
-                                    //     .push(MaterialPageRoute(builder: (_) {
-                                    //   return UpdateCourse(c.id, c.courseName);
-                                    // }));
-                                  },
-                                  icon: Icon(Icons.edit),
-                                  color: Color.fromARGB(255, 218, 200, 39)),
-                              IconButton(
-                                  onPressed: () {
-                                    showDialog(
-                                        context: context,
-                                        builder: (_) {
-                                          return AlertDialog(
-                                            backgroundColor:
-                                                Color.fromARGB(255, 33, 47, 49),
-                                            title: Text("Are you sure to Delete",
-                                                style:
-                                                    TextStyle(color: Colors.white)),
-                                            actions: [
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.spaceAround,
-                                                children: [
-                                                  ElevatedButton(
-                                                      onPressed: () {
-                                                        Course.removeCourse(c.id);
-                                                        Provider.of<SMProvider>(
-                                                                context,
-                                                                listen: false)
-                                                            .removeCourse(c);
-                                                        //print("delete Student ID: ${s.id}");
-                                                        Navigator.of(context).pop();
-                                                      },
-                                                      child: Text("Yes")),
-                                                  ElevatedButton(
-                                                      onPressed: () {
-                                                        Navigator.of(context).pop();
-                                                      },
-                                                      child: Text("No")),
-                                                ],
-                                              ),
-                                            ],
-                                          );
-                                        });
-                                  },
-                                  icon: Icon(Icons.delete),
-                                  color: Colors.red)
-                            ],
-                          )),
-                        ]);
-                      })
-                    ],
-                  ),
-                ],
-              ),
+                                            ),
+                                          ],
+                                        );
+                                      });
+                                  // Navigator.of(context)
+                                  //     .push(MaterialPageRoute(builder: (_) {
+                                  //   return UpdateCourse(c.id, c.courseName);
+                                  // }));
+                                },
+                                icon: Icon(Icons.edit),
+                                color: Color.fromARGB(255, 218, 200, 39)),
+                            IconButton(
+                                onPressed: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) {
+                                        return AlertDialog(
+                                          backgroundColor:
+                                              Color.fromARGB(255, 33, 47, 49),
+                                          title: Text("Are you sure to Delete",
+                                              style:
+                                                  TextStyle(color: Colors.white)),
+                                          actions: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              children: [
+                                                ElevatedButton(
+                                                    onPressed: () {
+                                                      Course.removeCourse(c.id);
+                                                      Provider.of<SMProvider>(
+                                                              context,
+                                                              listen: false)
+                                                          .removeCourse(c);
+                                                      //print("delete Student ID: ${s.id}");
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                    child: Text("Yes")),
+                                                ElevatedButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                    child: Text("No")),
+                                              ],
+                                            ),
+                                          ],
+                                        );
+                                      });
+                                },
+                                icon: Icon(Icons.delete),
+                                color: Colors.red)
+                          ],
+                        )),
+                      ]);
+                    })
+                  ],
+                ),
+              ],
             ),
           ),
         ),

@@ -147,20 +147,20 @@ class ViewResult extends StatelessWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Container(
-                                              child: RichText(
-                                                  text: TextSpan(children: [
-                                            TextSpan(
-                                                text: "Questuin ID: ",
-                                                style: TextStyle(
-                                                    color: Colors.white)),
-                                            TextSpan(
-                                                text: "${rd.id}",
-                                                style: TextStyle(
-                                                    fontSize: 18,
-                                                    color: Colors.white)),
-                                          ]))),
-                                          SizedBox(height: 10),
+                                          // Container(
+                                          //     child: RichText(
+                                          //         text: TextSpan(children: [
+                                          //   TextSpan(
+                                          //       text: "Questuin ID: ",
+                                          //       style: TextStyle(
+                                          //           color: Colors.white)),
+                                          //   TextSpan(
+                                          //       text: "${rd.id}",
+                                          //       style: TextStyle(
+                                          //           fontSize: 18,
+                                          //           color: Colors.white)),
+                                          // ]))),
+                                          // SizedBox(height: 10),
                                           Container(
                                               child: RichText(
                                                   text: TextSpan(children: [

@@ -58,14 +58,14 @@ class ManageUsers extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: DataTable(
                   columns: [
-                    DataColumn(
-                        label: Text(
-                      "ID",
-                      style: TextStyle(
-                        fontSize: 19,
-                        color: Color.fromARGB(255, 62, 255, 245),
-                      ),
-                    )),
+                    // DataColumn(
+                    //     label: Text(
+                    //   "ID",
+                    //   style: TextStyle(
+                    //     fontSize: 19,
+                    //     color: Color.fromARGB(255, 62, 255, 245),
+                    //   ),
+                    // )),
                     DataColumn(
                         label: Text(
                       "FullName",
@@ -110,11 +110,11 @@ class ManageUsers extends StatelessWidget {
                         stateColor = Colors.white;
                       }
                       return DataRow(cells: [
-                        DataCell(Text("${u.id}",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                            ))),
+                        // DataCell(Text("${u.id}",
+                        //     style: TextStyle(
+                        //       fontSize: 16,
+                        //       color: Colors.white,
+                        //     ))),
                         DataCell(Text("${u.fullName}",
                             style: TextStyle(
                               fontSize: 16,
